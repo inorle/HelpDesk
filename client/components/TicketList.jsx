@@ -12,7 +12,7 @@ const TicketList = () => {
         })
     }, [])
     return (
-        <div>
+        <div className='flex flex-wrap gap-2 justify-center'>
             {tickets}
         </div>
     )
