@@ -4,13 +4,16 @@ const cors = require('cors');
 const app = express();
 const PORT = 3000;
 const db = require('./dbModel');
+const newTicketController = require('./controllers/newTicketController')
 
 
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
 
-
+app.post('/api/newticket', newTicketController.newTicket, (req, res) => {
+    return res.status(200).json({ "Hello": "world" })
+})
 app.get('/api', (req, res) => {
     const dbtest = `SELECT * FROM tickets`
     db.query(dbtest).then(data=> console.log(data.rows));
