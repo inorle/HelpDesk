@@ -2,16 +2,18 @@ import React from 'react'
 import { useState } from 'react'
 
 const Ticket = ({name, description, status, response, email}) => {
-    const [newResponse, setNewResponse] = useState(response)
+    const [newResponse, setNewResponse] = useState('')
     const [newStatus, setNewStatus] = useState(status)
     return (
         <div>
             <p>{name}</p> 
-            <p>{email}</p>
             <p>{description}</p>
-            <p>{newStatus}</p>
-            <p> {newResponse}</p>
-            <button> Email </button>
+            <form>
+                <input value={newStatus}></input>
+                <label> send {email}: </label>
+                <input value ={newResponse}></input>
+                <button className="btn btn-primary" > Update </button>
+            </form>
         </div>
     )
 }

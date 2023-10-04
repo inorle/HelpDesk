@@ -27,15 +27,33 @@ const TicketForm = () => {
         return
     }
     return (
-        <div>
-            <form onSubmit={SubmitTicket}>
-                <label> Name: </label>
-                <input type='text' value={name} placeholder='Name' onChange={e => setName(e.target.value)} /> 
-                <label> Email: </label>
-                <input type='text' value={email}  placeholder='Email' onChange={e => setEmail(e.target.value)}/> 
-                <label> Description</label>
-                <input type='text' value={description} placeholder='Description of the Problem' onChange={e => setDescription(e.target.value)} />
-                <button type='submit' > Submit </button>   
+        <div >
+            <form onSubmit={SubmitTicket} className= 'mt-20 flex flex-col form-control max-w-lg p-4 bg-white rounded shadow-lg'>
+                <label className="label">
+                    <span className="label-text">Name:</span>
+                </label>
+                <input type='text'
+                    className='input input-bordered'
+                    value={name}
+                    placeholder='Name'
+                    onChange={e => setName(e.target.value)} /> 
+                <label className='label'>
+                    <span className="label-text">Email:</span>
+                </label>
+                <input type='email'
+                    className='input input-bordered w-full max-w-xs'
+                    value={email} placeholder='Name@email.com'
+                    onChange={e => setEmail(e.target.value)} /> 
+                <label className='label'>
+                    <span className="label-text"> Description:
+                    </span>
+                </label>
+                <textarea className="textarea textarea-bordered textarea-md w-full"
+                    value={description}
+                    placeholder="Description of the Problem"
+                    onChange={e => setDescription(e.target.value)}>
+                </textarea>
+                <button className= 'btn btn-sm btn-outline btn-success mt-3' type='submit' > Submit </button>   
             </form>
         </div>
     )
