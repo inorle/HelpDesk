@@ -1,14 +1,14 @@
 import React from 'react'
+import { Routes, Route } from 'react-router';
 
 const App = () => {
-    const clicked = async () => {
-        const test = fetch('/api').then((data) => data.json()).then(data=> console.log(data))
-        return test
-    }
      
     return(
         <div>
-            <button onClick={clicked}> HI </button>
+            <Routes>
+                <Route></Route>
+            </Routes>
+
         </div>
 
     )
