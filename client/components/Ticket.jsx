@@ -1,28 +1,47 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
+import Status from './Status.jsx'
+import Response from './Response.jsx'
 
-const Ticket = ({name, description, status, response, email}) => {
-    const [newResponse, setNewResponse] = useState('')
+
+const Ticket = ({name, description, status, response, email, id}) => {
+    const [sendResponse, setSendResponse] = useState('')
     const [newStatus, setNewStatus] = useState(status)
+    
+    useEffect(() => {
+        if (status != newStatus) {
+            fetch('/api/status', {
+                method: "PATCH",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: newStatus, id }),
+            })
+                .then(res => res.json())
+                .catch(e=> console.log("Error Changing Status"))
+        }
+    }, [newStatus])
+
+    useEffect(() => {
+        if (sendResponse != '') {
+            fetch('/api/response', {
+                method: "PATCH",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ response: sendResponse, id, email })
+            })
+                .then(res => res.json())
+                .then(data => console.log(`to: ${email} body: ${data}`))
+                .catch(e => console.log("Error Sending Response"))
+        }
+    }, [sendResponse])
+    
+
     return (
         <div className="relative card w-96 bg-base-100 shadow-xl">
-            <div class="absolute top-0 right-0 dropdown">
-                <label tabindex="0" class="btn m-1 btn-sm">{newStatus}</label>
-                    <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><a>New</a></li>
-                        <li><a>In Progress 2</a></li>
-                        <li><a>Complete</a></li>
-                    </ul>
-            </div>
-            <div className='mt-5 ml-5 mr-5 mb-5'>
+            <Status newStatus={newStatus} setNewStatus={setNewStatus}/>
+            <div className='m-5'>
                 <h2 className='font-bold'>{name}</h2>
                 <p>{description}</p>
-                <div className='grid grid-col-2'>
-
-                    <input value={newResponse}></input>
-                    <button className="btn btn-xs" > Send Response to {email} </button>
-                </div>
-             </div>
+                <Response response={response} email={email} setSendResponse= {setSendResponse} />
+            </div>
         </div>
     )
 }

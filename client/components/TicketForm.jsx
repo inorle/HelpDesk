@@ -16,7 +16,7 @@ const TicketForm = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, email, description }),
         })
-            .then(res => res.json)
+            .then(res => res.json())
             .then(() => {
                 setName('')
                 setEmail('')

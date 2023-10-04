@@ -4,11 +4,12 @@ import Ticket from './Ticket.jsx'
 
 const TicketList = () => {
     const [tickets, setTickets] = useState([])
+    
     useEffect(() => {
         fetch('/api/alltickets')
             .then(res => res.json())
             .then(data => {
-                setTickets(data.map(el => <Ticket key={el.id} name={el.name} description={el.description} email={el.email} status={el.status} response={el.response} />))
+                setTickets(data.map(el => <Ticket key={el.id} id={el.id} name={el.name} description={el.description} email={el.email} status={el.status} response={el.response} />))
         })
     }, [])
     return (

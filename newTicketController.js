@@ -1,15 +1,14 @@
-const db = require('../dbModel');
+const db = require('./server/dbModel');
 
-const newTicketController = {};
+const newticketController = {};
 
 
 newTicketController.newTicket = async (req, res, next) => {
     const { name, email, description } = req.body
     const status = 'new'
-    const response = ''
-    const ticketValues = [name, email, description, status, response]
+    const ticketValues = [name, email, description, status]
 
-    const ticketQuery = 'INSERT INTO tickets (name, email, description, status, response) VALUES ($1, $2, $3, $4, $5)'
+    const ticketQuery = 'INSERT INTO tickets (name, email, description, status) VALUES ($1, $2, $3, $4)'
     try {
         result = await db.query(ticketQuery, ticketValues);
         console.log(result)

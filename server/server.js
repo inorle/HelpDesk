@@ -13,10 +13,17 @@ app.use(express.urlencoded());
 app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
 
 app.post('/api/newticket', newTicketController.newTicket, (req, res) => {
-    return res.status(200).json("successfully added new ticket")
+    return res.status(201).json("successfully added new ticket")
 })
 app.get('/api/alltickets', adminTicketController.getTickets, (req, res) => {
     return res.status(200).json(res.locals.tickets)
+})
+app.patch('/api/status', adminTicketController.changeStatus, (req, res) => {
+  return res.status(200).json("changed status")
+})
+
+app.patch('/api/response', adminTicketController.sendResponse, (req, res) => {
+  return res.status(200).json(res.locals.response)
 })
 
 app.use((err, req, res, next) => {
