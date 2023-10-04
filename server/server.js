@@ -5,6 +5,7 @@ const app = express();
 const PORT = 3000;
 const db = require('./dbModel');
 const newTicketController = require('./controllers/newTicketController')
+const adminTicketController = require('./controllers/adminTicketController')
 
 
 app.use(express.json());
@@ -12,12 +13,10 @@ app.use(express.urlencoded());
 app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
 
 app.post('/api/newticket', newTicketController.newTicket, (req, res) => {
-    return res.status(200).json({ "Hello": "world" })
+    return res.status(200).json("successfully added new ticket")
 })
-app.get('/api', (req, res) => {
-    const dbtest = `SELECT * FROM tickets`
-    db.query(dbtest).then(data=> console.log(data.rows));
-    return res.status(200).json({ "Hello": "world" })
+app.get('/api/alltickets', adminTicketController.getTickets, (req, res) => {
+    return res.status(200).json(res.locals.tickets)
 })
 
 app.use((err, req, res, next) => {
