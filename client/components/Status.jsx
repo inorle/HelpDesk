@@ -9,7 +9,6 @@ const Status = ({ newStatus, setNewStatus }) => {
         if(elem){
           elem?.blur();
         }
-
     }
     //drop down menu for admin to select status - new, in progress and complete 
     //different color based on status

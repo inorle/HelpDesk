@@ -32,7 +32,6 @@ const Ticket = ({name, description, status, response, email, id}) => {
                 .catch(e => console.log('Error Sending Response'))
         }
     }, [sendResponse])
-    
 
     return (
         //ticket card showing the status in left, then name, description and field for response

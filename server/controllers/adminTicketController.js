@@ -20,8 +20,6 @@ adminTicketController.getTickets = async (req, res, next) => {
 }
 
 
-
-
 //controller to update the response from the admin in the db
 adminTicketController.sendResponse = async (req, res, next) => {
     const { email, response, id } = req.body

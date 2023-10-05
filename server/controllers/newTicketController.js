@@ -12,7 +12,7 @@ newTicketController.newTicket = async (req, res, next) => {
     const ticketQuery = 'INSERT INTO tickets (name, email, description, status, response) VALUES ($1, $2, $3, $4, $5)'
     try {
         result = await db.query(ticketQuery, ticketValues);
-        console.log(result)
+        // console.log(result)
         return next()
     }
     catch (err) {
