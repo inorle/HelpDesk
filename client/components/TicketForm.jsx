@@ -11,7 +11,7 @@ const TicketForm = () => {
         e.preventDefault();
         //check if name field and description field have been filled out
         if (name.length > 0 && description.length > 0) {
-            const res = fetch(`${process.env.ROOT_URI}/api/newticket`, {
+            const res = fetch(`https://helpdesk11-8eb3cc5ba962.herokuapp.com/api/newticket`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, email, description }),

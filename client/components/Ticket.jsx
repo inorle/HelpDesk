@@ -22,7 +22,7 @@ const Ticket = ({name, description, status, response, email, id}) => {
     //update the response when the admin adds one 
     useEffect(() => {
         if (sendResponse != '') {
-            fetch(`${process.env.ROOT_URI}/api/response`, {
+            fetch(`https://helpdesk11-8eb3cc5ba962.herokuapp.com/api/response`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ response: sendResponse, id, email })

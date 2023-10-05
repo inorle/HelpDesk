@@ -18,7 +18,7 @@ const TicketList = () => {
     }
     //fetch from the backend all the tasks and call addToArray to make three arrays based on the status
     useEffect(() => {
-        fetch(`${process.env.ROOT_URI}/api/alltickets`)
+        fetch(`https://helpdesk11-8eb3cc5ba962.herokuapp.com/api/alltickets`)
             .then(res => res.json())
             .then(data => {
                 addToArray('New', setNewTickets, data)
