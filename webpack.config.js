@@ -29,28 +29,14 @@ module.exports = {
         {
           test: /\.css$/i,
           use: ['style-loader', 'css-loader', 'postcss-loader' ],
-        },
-        {
-          // import css
-          test: /\.s[ac]ss$/i,
-          use: ['style-loader', 'css-loader', 'sass-loader'],
-        },
-        {
-          test: /\.(png|jpe?g|gif)$/i,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: '[name].[ext]',
-                outputPath: 'images/',
-              },
-            },
-          ],
-        },
+        }
       ],
     },
     devServer: {
       port: 8080,
+      static: {
+        directory: path.join(__dirname, './build'),
+      },
       proxy: [
         {
           context: ['/api'],

@@ -25,6 +25,17 @@ app.patch('/api/response', adminTicketController.sendResponse, (req, res) => {
   return res.status(200).json(res.locals.response)
 })
 
+app.use(express.static(path.join(__dirname, 'build')));
+
+//send static html w client side routing as well
+app.get("/*",  (req, res, ) => {
+  res.sendFile(path.resolve(__dirname, '../build', 'index.html'), function (err) {
+    if (err) {
+      console.log(err);
+    }
+  });
+});
+
 //error handling
 app.use((err, req, res, next) => {
     console.log('ERR', err);
@@ -36,6 +47,8 @@ app.use((err, req, res, next) => {
     const errorObj = Object.assign({}, defaultErr, err);
     console.log(errorObj.log);
     return res.status(errorObj.status).json(errorObj.message);
-  });
+});
+
+
 
 app.listen(PORT, () => console.log(`Listening on port 3000.`));
