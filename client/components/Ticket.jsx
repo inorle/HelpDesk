@@ -10,7 +10,7 @@ const Ticket = ({name, description, status, response, email, id}) => {
     //change the status in the db based on the user changing the status- one check to ignore the change based on initial mount
     useEffect(() => {
         if (status != newStatus) {
-            fetch(`${process.env.ROOT_URI}/api/status`, {
+            fetch(`https://helpdesk11-8eb3cc5ba962.herokuapp.com/api/status`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: newStatus, id }),
@@ -22,7 +22,7 @@ const Ticket = ({name, description, status, response, email, id}) => {
     //update the response when the admin adds one 
     useEffect(() => {
         if (sendResponse != '') {
-            fetch(`${process.env.ROOT_URI}/api/response`, {
+            fetch(`https://helpdesk11-8eb3cc5ba962.herokuapp.com/api/response`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ response: sendResponse, id, email })
@@ -32,7 +32,6 @@ const Ticket = ({name, description, status, response, email, id}) => {
                 .catch(e => console.log('Error Sending Response'))
         }
     }, [sendResponse])
-    
 
     return (
         //ticket card showing the status in left, then name, description and field for response

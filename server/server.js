@@ -2,14 +2,19 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const newTicketController = require('./controllers/newTicketController')
 const adminTicketController = require('./controllers/adminTicketController')
-
+const userController = require('./controllers/userController')
 
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors({ credentials: true, methods: ['POST', 'GET', 'PATCH'], origin: '*' }));
+
+
+app.post('/api/login', userController.verifyUser, (req, res) => {
+  return res.status(200).json({ 'id': res.locals.userid })
+})
 
 app.post('/api/newticket', newTicketController.newTicket, (req, res) => {
     return res.status(201).json('successfully added new ticket')
@@ -25,6 +30,7 @@ app.patch('/api/response', adminTicketController.sendResponse, (req, res) => {
   return res.status(200).json(res.locals.response)
 })
 
+
 app.use(express.static(path.join(__dirname, '../build')));
 
 //send static html w client side routing as well
@@ -36,7 +42,7 @@ app.get("/*",  (req, res, ) => {
   });
 });
 
-//error handling
+//error handling for errors in middleware
 app.use((err, req, res, next) => {
     console.log('ERR', err);
     const defaultErr = {
@@ -50,5 +56,4 @@ app.use((err, req, res, next) => {
 });
 
 
-
-app.listen(PORT, () => console.log(`Listening on port 3000.`));
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
