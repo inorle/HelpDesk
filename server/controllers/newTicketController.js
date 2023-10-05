@@ -2,7 +2,7 @@ const db = require('../dbModel');
 
 const newTicketController = {};
 
-
+//controller to add new Ticket to the db
 newTicketController.newTicket = async (req, res, next) => {
     const { name, email, description } = req.body
     const status = 'new'

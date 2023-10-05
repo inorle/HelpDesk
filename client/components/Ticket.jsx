@@ -7,7 +7,7 @@ import Response from './Response.jsx'
 const Ticket = ({name, description, status, response, email, id}) => {
     const [sendResponse, setSendResponse] = useState('')
     const [newStatus, setNewStatus] = useState(status)
-    
+    //change the status in the db based on the user changing the status- one check to ignore the change based on initial mount
     useEffect(() => {
         if (status != newStatus) {
             fetch('/api/status', {
@@ -19,7 +19,7 @@ const Ticket = ({name, description, status, response, email, id}) => {
                 .catch(e=> console.log('Error Changing Status'))
         }
     }, [newStatus])
-
+    //update the response when the admin adds one 
     useEffect(() => {
         if (sendResponse != '') {
             fetch('/api/response', {
@@ -35,7 +35,8 @@ const Ticket = ({name, description, status, response, email, id}) => {
     
 
     return (
-        <div className={`relative card w-96 bg-base-100 shadow-xl outline-1	${status === 'New' ? 'outline-info' : status === 'In Progress' ? 'outline-secondary' : 'outline-success'}`}>
+        //ticket card showing the status in left, then name, description and field for response
+        <div className={`relative card w-96 bg-base-100 shadow-xl'}`}>
             <Status newStatus={newStatus} setNewStatus={setNewStatus}/>
             <div className='m-5'>
                 <h2 className='font-bold text-xl'>{name}</h2>

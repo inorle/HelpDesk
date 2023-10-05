@@ -3,7 +3,6 @@ const path = require('path');
 const cors = require('cors');
 const app = express();
 const PORT = 3000;
-const db = require('./dbModel');
 const newTicketController = require('./controllers/newTicketController')
 const adminTicketController = require('./controllers/adminTicketController')
 
@@ -26,6 +25,7 @@ app.patch('/api/response', adminTicketController.sendResponse, (req, res) => {
   return res.status(200).json(res.locals.response)
 })
 
+//error handling
 app.use((err, req, res, next) => {
     console.log('ERR', err);
     const defaultErr = {

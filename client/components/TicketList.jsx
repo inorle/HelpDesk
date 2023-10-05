@@ -7,6 +7,7 @@ const TicketList = () => {
     const [inProgressTickets, setInProgressTickets] = useState([])
     const [completedTickets, setCompletedTickets] = useState([])
 
+    //function to create array based on status of task
     const addToArray = (ticketType, updateType, data) => {
         updateType(data.reduce((acc, el) => {
             if (el.status === ticketType) {
@@ -15,6 +16,7 @@ const TicketList = () => {
             return acc
         }, []))
     }
+    //fetch from the backend all the tasks and call addToArray to make three arrays based on the status
     useEffect(() => {
         fetch('/api/alltickets')
             .then(res => res.json())

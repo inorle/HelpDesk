@@ -3,7 +3,7 @@ const db = require('../dbModel');
 const adminTicketController = {};
 
 
-//get all tickets
+//controller to get all the tickets from the db
 adminTicketController.getTickets = async (req, res, next) => {
     const ticketQuery = `SELECT * FROM tickets`
     try {
@@ -22,7 +22,7 @@ adminTicketController.getTickets = async (req, res, next) => {
 
 
 
-//be able to respond to the tickets
+//controller to update the response from the admin in the db
 adminTicketController.sendResponse = async (req, res, next) => {
     const { email, response, id } = req.body
     const values = [response, id]
@@ -40,7 +40,7 @@ adminTicketController.sendResponse = async (req, res, next) => {
     }
 }
 
-//change status of the ticket
+//controller to change the status of the ticket in the db
 adminTicketController.changeStatus = async (req, res, next) => {
     const { id, status } = req.body
     const values = [status, id]

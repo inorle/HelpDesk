@@ -4,12 +4,15 @@ import { useState } from 'react'
 
 const Response = ({ response, setSendResponse, email, name }) => {
     const [newResponse, setNewResponse] = useState('')
+    
+    //if the admin previously messaged someone, show that message, if not just show an empty bod
     useEffect(() => {
         if (response != null) {
             setNewResponse(response)
         }
     }, [])
-return (
+    //expandable text box for admin's response and button that will send the response when pressed
+    return (
     <div>
       <label className='label'>
                     <span className='label-text'> response:

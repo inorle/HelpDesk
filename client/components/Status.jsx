@@ -1,6 +1,8 @@
 import React from 'react'
 
 const Status = ({ newStatus, setNewStatus }) => {
+
+    //function to set the new status and hide the dropdown menu when a new status is selected
     const HandleClick = (status) => {
         setNewStatus(status)
         const elem = document.activeElement;
@@ -9,7 +11,8 @@ const Status = ({ newStatus, setNewStatus }) => {
         }
 
     }
-    
+    //drop down menu for admin to select status - new, in progress and complete 
+    //different color based on status
     return (
     <div className='absolute mt-1 top-0 right-0 dropdown dropdown-end '>
             <label tabIndex='0' className={`btn m-1 btn-sm ${newStatus === 'New' ? 'bg-info' : newStatus === 'In Progress'? 'text-secondary' : 'text-success'}`}>{newStatus}</label>

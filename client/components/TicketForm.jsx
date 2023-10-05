@@ -6,9 +6,10 @@ const TicketForm = () => {
     const [email, setEmail] = useState('')
     const [description, setDescription] = useState('')
 
+    //function to submit ticket to the backend
     const SubmitTicket = (e) => {
-
         e.preventDefault();
+        //check if name field and description field have been filled out
         if (name.length > 0 && description.length > 0) {
             const res = fetch('/api/newticket', {
                 method: 'POST',
