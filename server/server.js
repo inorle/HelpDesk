@@ -25,7 +25,7 @@ app.patch('/api/response', adminTicketController.sendResponse, (req, res) => {
   return res.status(200).json(res.locals.response)
 })
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, '../build')));
 
 //send static html w client side routing as well
 app.get("/*",  (req, res, ) => {
