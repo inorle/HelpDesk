@@ -12,7 +12,7 @@ const Login = () => {
         console.log('SUCESS')
         //check if username field and password field have been filled out
         if (username.length > 0 && password.length > 0) {
-            fetch(`/api/login`, {
+            fetch(`https://helpdesk11-8eb3cc5ba962.herokuapp.com/api/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password}),
