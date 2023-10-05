@@ -9,7 +9,7 @@ const adminTicketController = require('./controllers/adminTicketController')
 
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(cors({ credentials: true, origin: '*' }));
+app.use(cors({ credentials: true, methods: ['POST', 'GET', 'PATCH'], origin: '*' }));
 
 app.post('/api/newticket', newTicketController.newTicket, (req, res) => {
     return res.status(201).json('successfully added new ticket')

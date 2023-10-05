@@ -18,7 +18,7 @@ const TicketList = () => {
     }
     //fetch from the backend all the tasks and call addToArray to make three arrays based on the status
     useEffect(() => {
-        fetch('/api/alltickets')
+        fetch(`${process.env.ROOT_URI}/api/alltickets`)
             .then(res => res.json())
             .then(data => {
                 addToArray('New', setNewTickets, data)

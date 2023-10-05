@@ -10,7 +10,7 @@ const Ticket = ({name, description, status, response, email, id}) => {
     //change the status in the db based on the user changing the status- one check to ignore the change based on initial mount
     useEffect(() => {
         if (status != newStatus) {
-            fetch('/api/status', {
+            fetch(`${process.env.ROOT_URI}/api/status`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: newStatus, id }),
@@ -22,7 +22,7 @@ const Ticket = ({name, description, status, response, email, id}) => {
     //update the response when the admin adds one 
     useEffect(() => {
         if (sendResponse != '') {
-            fetch('/api/response', {
+            fetch(`${process.env.ROOT_URI}/api/response`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ response: sendResponse, id, email })
