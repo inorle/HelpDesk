@@ -8,6 +8,9 @@
         "build": "NODE_ENV='production' webpack",
         "dev": "NODE_ENV=development webpack serve & nodemon server/server.js"
     },
+    "engines": {
+        "node": ">=18.0.0"
+      },
     "author": "Wonderpus Photogenicus",
     "license": "MIT",
     "dependencies": {
