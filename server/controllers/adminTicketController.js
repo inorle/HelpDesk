@@ -14,7 +14,7 @@ adminTicketController.getTickets = async (req, res, next) => {
     }
     catch {
         return next({
-            message: { err: "Error in getting tickets", err }
+            message: { err: 'Error in getting tickets', err }
         })
     }
 }
@@ -35,7 +35,7 @@ adminTicketController.sendResponse = async (req, res, next) => {
     }
     catch {
         return next({
-            message: { err: "Error in changing status", err }
+            message: { err: 'Error in changing status', err }
         })
     }
 }
@@ -51,7 +51,7 @@ adminTicketController.changeStatus = async (req, res, next) => {
     }
     catch {
         return next({
-            message: { err: "Error in changing status", err }
+            message: { err: 'Error in changing status', err }
         })
     }
 }

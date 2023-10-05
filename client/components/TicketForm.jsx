@@ -7,30 +7,29 @@ const TicketForm = () => {
     const [description, setDescription] = useState('')
 
     const SubmitTicket = (e) => {
-        //could put a check to see if all the fields have a valid entry
-        //could put a check to see if email field is correct
-        e.preventDefault();
 
-        const res =  fetch('/api/newticket', {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, description }),
-        })
-            .then(res => res.json())
-            .then(() => {
-                setName('')
-                setEmail('')
-                setDescription('')
+        e.preventDefault();
+        if (name.length > 0 && description.length > 0) {
+            const res = fetch('/api/newticket', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, description }),
             })
-            .catch(e=> console.log("Error Sending Ticket"))
-    
+                .then(res => res.json())
+                .then(() => {
+                    setName('')
+                    setEmail('')
+                    setDescription('')
+                })
+                .catch(e => console.log('Error Sending Ticket'))
+            }
         return
     }
     return (
-        <div >
-            <form onSubmit={SubmitTicket} className= 'mt-20 flex flex-col form-control max-w-lg p-4 bg-white rounded shadow-lg'>
-                <label className="label">
-                    <span className="label-text">Name:</span>
+        <div className='w-5/12 h-9/12'>
+            <form onSubmit={SubmitTicket} className= 'mt-20 flex flex-col form-control max-w-xl p-4 bg-white rounded shadow-lg'>
+                <label className='label'>
+                    <span className='label-text'>Name:</span>
                 </label>
                 <input type='text'
                     className='input input-bordered'
@@ -38,28 +37,25 @@ const TicketForm = () => {
                     placeholder='Name'
                     onChange={e => setName(e.target.value)} /> 
                 <label className='label'>
-                    <span className="label-text">Email:</span>
+                    <span className='label-text'>Email:</span>
                 </label>
                 <input type='email'
-                    className='input input-bordered w-full max-w-xs'
+                    className='input input-bordered '
                     value={email} placeholder='Name@email.com'
                     onChange={e => setEmail(e.target.value)} /> 
                 <label className='label'>
-                    <span className="label-text"> Description:
+                    <span className='label-text'> Description:
                     </span>
                 </label>
-                <textarea className="textarea textarea-bordered textarea-md w-full"
+                <textarea className='textarea textarea-bordered textarea-md w-full'
                     value={description}
-                    placeholder="Description of the Problem"
+                    placeholder='Description of the Problem'
                     onChange={e => setDescription(e.target.value)}>
                 </textarea>
                 <button className= 'btn btn-sm btn-outline btn-success mt-3' type='submit' > Submit </button>   
             </form>
         </div>
     )
-
-
-
 }
 
 

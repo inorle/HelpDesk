@@ -17,7 +17,7 @@ newTicketController.newTicket = async (req, res, next) => {
     }
     catch (err) {
         return next({
-            message: { err: "Problem creating new ticket", err }
+            message: { err: 'Problem creating new ticket', err }
         })
     }
 }
