@@ -27,7 +27,7 @@ const TicketForm = () => {
         return
     }
     return (
-        <div className='w-5/12 h-9/12'>
+        <div className='w-5/12'>
             <form onSubmit={SubmitTicket} className= 'mt-20 flex flex-col form-control max-w-xl p-4 bg-white rounded shadow-lg'>
                 <label className='label'>
                     <span className='label-text'>Name:</span>
